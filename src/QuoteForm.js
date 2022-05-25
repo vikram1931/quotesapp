@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import {
   Paper,
   TextField,
@@ -15,7 +16,8 @@ const QuoteForm = () => {
     e.preventDefault();
 
     const formData = {
-      id: Number(new Date()),
+      // id: Number(new Date()),
+      id: uuidv4(),
       name: name,
       body: body,
     };
