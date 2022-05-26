@@ -8,7 +8,8 @@ import {
   TextareaAutosize,
   FormControl,
 } from "@mui/material";
-const QuoteForm = () => {
+const QuoteForm = (props) => {
+  const { addItem } = props;
   const [name, setName] = useState("");
   const [body, setBody] = useState("");
   const paperStyle = { padding: "30px 20px" };
@@ -21,7 +22,9 @@ const QuoteForm = () => {
       name: name,
       body: body,
     };
-    console.log(formData);
+    addItem(formData);
+    setName("");
+    setBody("");
   };
 
   const handleNameChange = (e) => {

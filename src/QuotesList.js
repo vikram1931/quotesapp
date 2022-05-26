@@ -1,5 +1,5 @@
 import React from "react";
-
+import QuotesItem from "./QuotesItem";
 const QuotesList = (props) => {
   const { quotes } = props;
   return (
@@ -12,7 +12,11 @@ const QuotesList = (props) => {
         </>
       ) : (
         <>
-          <h1>MyQuotes -{quotes.length}</h1>
+          <h1>
+            {quotes.map((quote) => {
+              return <QuotesItem key={quote.id} {...quote} />;
+            })}
+          </h1>
         </>
       )}
     </div>

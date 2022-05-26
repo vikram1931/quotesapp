@@ -5,6 +5,11 @@ import QuoteForm from "./QuoteForm";
 const QuotesContainer = () => {
   const [quotes, setQuotes] = useState([]);
 
+  const addItem = (quote) => {
+    const result = [...quotes, quote];
+    setQuotes(result);
+  };
+
   const paperStyle = { padding: "30px 20px" };
   return (
     <Grid container spacing={2}>
@@ -15,7 +20,7 @@ const QuotesContainer = () => {
       </Grid>
       <Grid item xs={6}>
         <Paper elevation={24} style={paperStyle}>
-          <QuoteForm />
+          <QuoteForm addItem={addItem} />
 
           {
             //  <AddQuote quotes={quotes} addItem={addItem} />
