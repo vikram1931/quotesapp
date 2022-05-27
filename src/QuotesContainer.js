@@ -10,6 +10,13 @@ const QuotesContainer = () => {
     //quotes order
     setQuotes(result);
   };
+
+  const removeItem = (id) => {
+    const result = quotes.filter((quote) => {
+      return quote.id !== id;
+    });
+    setQuotes(result);
+  };
   useEffect(() => {
     localStorage.setItem("quotes", JSON.stringify(quotes));
   }, [quotes]);
@@ -25,7 +32,7 @@ const QuotesContainer = () => {
     <Grid container spacing={2}>
       <Grid item xs={6}>
         <Paper elevation={24} style={paperStyle}>
-          <QuotesList quotes={quotes} />
+          <QuotesList quotes={quotes} removeItem={removeItem} />
         </Paper>
       </Grid>
       <Grid item xs={6}>
