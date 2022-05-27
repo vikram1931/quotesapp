@@ -7,6 +7,7 @@ const QuotesContainer = () => {
 
   const addItem = (quote) => {
     const result = [quote, ...quotes];
+    //quotes order
     setQuotes(result);
   };
   useEffect(() => {
@@ -15,7 +16,7 @@ const QuotesContainer = () => {
 
   useEffect(() => {
     const result = JSON.parse(localStorage.getItem("quotes")) || [];
-    console.log("result from getItem", result);
+
     setQuotes(result);
   }, []);
 
