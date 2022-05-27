@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid, Paper } from "@mui/material";
 import QuotesList from "./QuotesList";
 import QuoteForm from "./QuoteForm";
@@ -6,9 +6,18 @@ const QuotesContainer = () => {
   const [quotes, setQuotes] = useState([]);
 
   const addItem = (quote) => {
-    const result = [...quotes, quote];
+    const result = [quote, ...quotes];
     setQuotes(result);
   };
+  useEffect(() => {
+    localStorage.setItem("quotes", JSON.stringify(quotes));
+  }, [quotes]);
+
+  useEffect(() => {
+    const result = JSON.parse(localStorage.getItem("quotes")) || [];
+    console.log("result from getItem", result);
+    setQuotes(result);
+  }, []);
 
   const paperStyle = { padding: "30px 20px" };
   return (
