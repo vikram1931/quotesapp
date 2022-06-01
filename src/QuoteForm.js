@@ -9,20 +9,23 @@ import {
   FormControl,
 } from "@mui/material";
 const QuoteForm = (props) => {
-  const { addItem } = props;
-  const [name, setName] = useState("");
-  const [body, setBody] = useState("");
+  const { formSubmission, id: slNo, name: author, body: quote } = props;
+  const [id, setId] = useState(slNo ? slNo : uuidv4);
+  const [name, setName] = useState(author ? author : "");
+  const [body, setBody] = useState(quote ? quote : "");
+
   const paperStyle = { padding: "30px 20px" };
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const formData = {
       // id: Number(new Date()),
-      id: uuidv4(),
+      id: id,
       name: name,
       body: body,
     };
-    addItem(formData);
+    formSubmission(formData);
+
     setName("");
     setBody("");
   };
@@ -40,7 +43,6 @@ const QuoteForm = (props) => {
 
   return (
     <div>
-      <h1>QuoteForm</h1>
       <Paper elevation={24} style={paperStyle}>
         <TextField
           id="outlined-basic"
@@ -56,8 +58,8 @@ const QuoteForm = (props) => {
           minRows={3}
           placeholder="Body"
           style={{ width: 250 }}
-          value={body}
           onChange={handleBodyChange}
+          value={body}
         />
         <Typography variant="h1" />
         <Button variant="contained" onClick={handleSubmit}>

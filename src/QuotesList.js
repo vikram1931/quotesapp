@@ -1,7 +1,7 @@
 import React from "react";
 import QuotesItem from "./QuotesItem";
 const QuotesList = (props) => {
-  const { quotes, removeItem } = props;
+  const { quotes, removeItem, editItem } = props;
   return (
     <div>
       <h1>Quotes List</h1>
@@ -15,7 +15,12 @@ const QuotesList = (props) => {
           <h1>
             {quotes.map((quote) => {
               return (
-                <QuotesItem key={quote.id} {...quote} removeItem={removeItem} />
+                <QuotesItem
+                  key={quote.id}
+                  {...quote}
+                  removeItem={removeItem}
+                  editItem={editItem}
+                />
               );
             })}
           </h1>

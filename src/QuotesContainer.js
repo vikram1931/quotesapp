@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Grid, Paper } from "@mui/material";
 import QuotesList from "./QuotesList";
-import QuoteForm from "./QuoteForm";
+import AddQuote from "./AddQuote";
+
 const QuotesContainer = () => {
   const [quotes, setQuotes] = useState([]);
 
@@ -27,21 +28,32 @@ const QuotesContainer = () => {
     setQuotes(result);
   }, []);
 
+  const editItem = (quote) => {
+    const result = quotes.map((q) => {
+      if (q.id === quote.id) {
+        return { ...q, ...quote };
+      } else {
+        return { ...q };
+      }
+    });
+    setQuotes(result);
+  };
+
   const paperStyle = { padding: "30px 20px" };
   return (
     <Grid container spacing={2}>
       <Grid item xs={6}>
         <Paper elevation={24} style={paperStyle}>
-          <QuotesList quotes={quotes} removeItem={removeItem} />
+          <QuotesList
+            quotes={quotes}
+            removeItem={removeItem}
+            editItem={editItem}
+          />
         </Paper>
       </Grid>
       <Grid item xs={6}>
         <Paper elevation={24} style={paperStyle}>
-          <QuoteForm addItem={addItem} />
-
-          {
-            //  <AddQuote quotes={quotes} addItem={addItem} />
-          }
+          <AddQuote addItem={addItem} />
         </Paper>
       </Grid>
     </Grid>
